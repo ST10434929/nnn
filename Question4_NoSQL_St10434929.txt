@@ -1,0 +1,39 @@
+// -----------------------------
+// Question 4 – NoSQL (MongoDB)
+// Student Number: St10434929
+// -----------------------------
+
+// Q4.1  Create and switch to the database
+use gym_St10434929
+
+// Q4.2  Clean collection if it exists, then insert user profiles
+db.userProfiles.deleteMany({})  // Remove any existing data
+
+db.userProfiles.insertMany([
+  {
+    Name: "Dominic",
+    Surname: "Badeaux",
+    DateOfBirth: new Date("1982-09-04"),
+    FitnessLevel: 1
+  },
+  {
+    Name: "John",
+    Surname: "Dlamini",
+    DateOfBirth: new Date("1974-05-18"),
+    FitnessLevel: 2
+  }
+])
+
+// Q4.3  Query all data in the collection
+db.userProfiles.find()
+
+// Q4.4  Query all users with FitnessLevel = 2
+db.userProfiles.find({ FitnessLevel: 2 })
+
+// Q4.5  Query users born between 1980-01-01 and 1982-12-31
+db.userProfiles.find({
+  DateOfBirth: {
+    $gte: new Date("1980-01-01"),
+    $lte: new Date("1982-12-31")
+  }
+})
